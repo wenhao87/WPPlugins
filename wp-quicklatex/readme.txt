@@ -2,9 +2,9 @@
 Contributors: advanpix, cityjin, kirkpatrick 
 Donate link: http://www.holoborodko.com/pavel/quicklatex/
 Tags: latex, math, TikZ, gnuplot, equations, QuickLaTeX.com, plot, SVG
-Stable tag: 3.8.3
+Stable tag: 3.8.4
 Requires at least: 2.8
-Tested up to: 4.3
+Tested up to: 4.4
 
 Advanced LaTeX plugin. Native LaTeX syntax. Allows custom preamble, TikZ and other packages. Zoom-independent visual quality (SVG).
 
@@ -51,7 +51,7 @@ LaTeX to be installed on user's server or hosting account. Just install the plug
 
 * Download WP QuickLaTeX plug-in.
 * Unzip the plugin file and upload its content to `wp-content/plugins` folder of your blog.
-* Activate WP-QuickLaTeX through the 'Plugins' menu in Wordpress.
+* Activate WP-QuickLaTeX through the 'Plugins' menu in Wordpress, adjust its settings if needed.
 
 == Frequently Asked Questions ==
 
@@ -72,8 +72,11 @@ I'll do my best to help you.
 
 == Change Log ==
 
+= 3.8.4 =
+* Added compatibility with PHP7.
+
 = 3.8.3 =
-* Image size optimization using OptiPNG.
+* Image size reduction using OptiPNG.
 * Minimized memory usage. Useful for restricted PHP configurations.
 
 = 3.8.2 =
