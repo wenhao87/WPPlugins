@@ -3,7 +3,7 @@
 Plugin Name: WP Statistics
 Plugin URI: http://wp-statistics.com/
 Description: Complete statistics for your WordPress site.
-Version: 10.0.4
+Version: 10.0.3
 Author: Mostafa Soufi & Greg Ross
 Author URI: http://wp-statistics.com/
 Text Domain: wp_statistics
@@ -12,7 +12,7 @@ License: GPL2
 */
 
 	// These defines are used later for various reasons.
-	define('WP_STATISTICS_VERSION', '10.0.4');
+	define('WP_STATISTICS_VERSION', '10.0.3');
 	define('WP_STATISTICS_MANUAL', 'manual/WP Statistics Admin Manual.');
 	define('WP_STATISTICS_REQUIRED_PHP_VERSION', '5.3.0');
 	define('WP_STATISTICS_REQUIRED_GEOIP_PHP_VERSION', WP_STATISTICS_REQUIRED_PHP_VERSION);
@@ -448,7 +448,7 @@ License: GPL2
 		add_meta_box( 'wps_search_postbox', __( 'Search Engine Referrals', 'wp_statistics' ), 'wp_statistics_generate_overview_postbox_contents', $WP_Statistics->menu_slugs['overview'], 'normal', null, array( 'widget' => 'search' ) );
 		add_meta_box( 'wps_words_postbox', __( 'Latest Search Words', 'wp_statistics' ), 'wp_statistics_generate_overview_postbox_contents', $WP_Statistics->menu_slugs['overview'], 'normal', null, array( 'widget' => 'words' ) );
 		add_meta_box( 'wps_pages_postbox', __( 'Top 10 Pages', 'wp_statistics' ), 'wp_statistics_generate_overview_postbox_contents', $WP_Statistics->menu_slugs['overview'], 'normal', null, array( 'widget' => 'pages' ) );
-		add_meta_box( 'wps_recent_postbox', __( 'Recent Visitors', 'wp_statistics' ), 'wp_statistics_generate_overview_postbox_contents', $WP_Statistics->menu_slugs['overview'], 'normal', null, array( 'widget' => 'recent' ) );
+		add_meta_box( 'wps_visitors_postbox', __( 'Recent Visitors', 'wp_statistics' ), 'wp_statistics_generate_overview_postbox_contents', $WP_Statistics->menu_slugs['overview'], 'normal', null, array( 'widget' => 'recent' ) );
 		
 		// Left side "thin" widgets.
 		add_meta_box( 'wps_summary_postbox', __( 'Summary', 'wp_statistics'), 'wp_statistics_generate_overview_postbox_contents', $WP_Statistics->menu_slugs['overview'], 'side', null, array( 'widget' => 'summary' ) );

@@ -69,10 +69,6 @@ ul.related_post li img {
 	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2) !important;
 }
 
-ul.related_post li .wp_rp_category a {
-	display: inline !important;
-}
-
 ul.related_post li a img.wp_rp_santa_hat {
 	display: none !important;
 }
@@ -101,4 +97,3 @@ ul.related_post li small {
 		height: 100px !important;
 	}
 }
-

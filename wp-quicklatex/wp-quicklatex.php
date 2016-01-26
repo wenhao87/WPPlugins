@@ -3,7 +3,7 @@
 		Plugin Name: WP QuickLaTeX
 		Plugin URI: http://www.holoborodko.com/pavel/quicklatex/
 		Description: Access to complete LaTeX distribution. Publish formulae & graphics using native LaTeX syntax directly in the text. Inline formulas, displayed equations auto-numbering, labeling and referencing, AMS-LaTeX, <code>TikZ</code>, custom LaTeX preamble. No LaTeX installation required. Easily customizable using UI dialog. Actively developed and maintained. Visit <a href="http://www.holoborodko.com/pavel/quicklatex/">QuickLaTeX homepage</a> for more info.
-		Version: 3.8.4
+		Version: 3.8.3
 		Author: Pavel Holoborodko
 		Author URI: http://www.holoborodko.com/pavel/
 		Copyright: Pavel Holoborodko
@@ -72,7 +72,7 @@
 	// Prevent direct call to this php file
 	if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) { die('You are not allowed to call this page directly.'); }
 
-	// Version check
+	/* Version check */
 	global $wp_version;
 
 	$exit_msg='WP QuickLaTeX requires Wordpress 2.8 or newer. Please update!';
@@ -1402,11 +1402,11 @@ QuickLaTeX is free under linkware license. Which means service can be used: (a) 
 					break;
 			}
 
-			$info_file  = 'quicklatex.com-'.$formula_hash.'_l3.txt';
-			$image_file = 'quicklatex.com-'.$formula_hash.'_l3.'.$image_ext;
+			$info_file  = 'wenhao.ca-'.$formula_hash.'_l3.txt';
+			$image_file = 'wenhao.ca-'.$formula_hash.'_l3.'.$image_ext;
 			
-			//$png_image_file = 'quicklatex.com-'.$formula_hash.'_l3.svg';			
-			//$svg_image_file = 'quicklatex.com-'.$formula_hash.'_l3.svg';
+			//$png_image_file = 'wenhao.ca-'.$formula_hash.'_l3.svg';			
+			//$svg_image_file = 'wenhao.ca-'.$formula_hash.'_l3.svg';
 			
 			$cache_url  = WP_QUICKLATEX_CACHE_URL;
 			$cache_path = WP_QUICKLATEX_CACHE_DIR;
@@ -1499,6 +1499,8 @@ QuickLaTeX is free under linkware license. Which means service can be used: (a) 
 							$image_width  = $regs[4];
 							$image_height = $regs[5];
 							$error_msg    = $regs[6];
+							
+							$image_height = ($image_height % 30 == 0 ? $image_height : (ceil($image_height / 30)) * 30);
 
 							if (!QUICKLATEX_PRODUCTION)	$image_url = str_replace("quicklatex.com", "localhost", $image_url);
 							
@@ -1575,7 +1577,7 @@ QuickLaTeX is free under linkware license. Which means service can be used: (a) 
 						{
 								// tikZ picture
 								$out_str  = '<p class="ql-center-picture">';
-								$out_str .= "<img src=\"$image_url\""." height=\"$image_height\" width=\"$image_width\""." class=\"ql-img-picture $extrastyles\""." alt=\"Rendered by QuickLaTeX.com\" title=\"Rendered by QuickLaTeX.com\"/>";
+								$out_str .= "<img src=\"$image_url\""." height=\"$image_height\" width=\"$image_width\""." class=\"ql-img-picture $extrastyles\""." alt=\"Rendered by Wenhao.ca\" title=\"Rendered by Wenhao.ca\"/>";
 								$out_str .= "</p>";
 						}else{
 							if($displayed_equation==false)
@@ -1583,7 +1585,7 @@ QuickLaTeX is free under linkware license. Which means service can be used: (a) 
 								// Inline formula
 								// Apply ql-inline-formula style class, setup correct vertical alignment
 
-								$out_str  = "<img src=\"$image_url\" class=\"ql-img-inline-formula $extrastyles\" alt=\"".quicklatex_alt_text($formula_text)."\" title=\"Rendered by QuickLaTeX.com\"";
+								$out_str  = "<img src=\"$image_url\" class=\"ql-img-inline-formula $extrastyles\" alt=\"".quicklatex_alt_text($formula_text)."\" title=\"Rendered by Wenhao.ca\"";
 								$out_str .= " height=\"$image_height\" width=\"$image_width\"";
 								$out_str .= " style=\"vertical-align: ".-$image_align."px;\"/>";								
 								
@@ -1599,8 +1601,9 @@ QuickLaTeX is free under linkware license. Which means service can be used: (a) 
 
 								// We need image_height for correct vertical centering									
 								$out_str .= '<p class="'.$align_css[$align].'"';
-								if($image_height >= 0) 
+								if($image_height >= 0) {
 									$out_str .= " style=\"line-height: ".$image_height."px;\"";
+								}
 									
 								// Close <p> tag
 								$out_str .= ">";
@@ -1623,7 +1626,7 @@ QuickLaTeX is free under linkware license. Which means service can be used: (a) 
 								}
 								
 								// Place image on the page
-								$out_str .= "<img src=\"$image_url\""." height=\"$image_height\" width=\"$image_width\""." class=\"ql-img-displayed-equation $extrastyles\" alt=\"".quicklatex_alt_text($formula_text)."\" title=\"Rendered by QuickLaTeX.com\"";
+								$out_str .= "<img src=\"$image_url\""." height=\"$image_height\" width=\"$image_width\""." class=\"ql-img-displayed-equation $extrastyles\" alt=\"".quicklatex_alt_text($formula_text)."\" title=\"Rendered by Wenhao.ca\"";
 
 								$out_str .= "/>";
 
@@ -1634,7 +1637,10 @@ QuickLaTeX is free under linkware license. Which means service can be used: (a) 
 					}else{
 					    // $mode = 1
 						// Apply ql-manual-mode
-						$out_str = "<img src=\"$image_url\" height=\"$image_height\" width=\"$image_width\" class=\"ql-manual-mode $extrastyles\" alt=\"Rendered by QuickLaTeX.com\" title=\"Rendered by QuickLaTeX.com\"/>";
+						$image_height = ($image_height % 30 == 0 ? $image_height : (ceil($image_height / 30)) * 30);
+
+						$out_str = "<object style=\"margin: 9px 0 10px\" data=\"$image_url\" type=\"image/svg+xml\" height=\"$image_height\" alt=\"Rendered by Wenhao.ca\" title=\"Rendered by Wenhao.ca\"></object>";
+						$out_str_1 = "<img src=\"$image_url\" height=\"$image_height\" width=\"$image_width\" class=\"ql-manual-mode $extrastyles\" alt=\"Rendered by Wenhao.ca\" title=\"Rendered by Wenhao.ca\"/>";
 					}
 					
 				}else{ // status == 0
@@ -2072,17 +2078,8 @@ QuickLaTeX is free under linkware license. Which means service can be used: (a) 
 		$string = str_replace("&nbsp;"," ",$string);
 		
 		// replace numeric entities
-		$string = preg_replace_callback(
-                '/&#x([0-9a-f]+);/i', 
-                function($matches) { return quicklatex_unichr(hexdec($matches[1])); },
-                $string
-        );
-                
-		$string = preg_replace_callback(
-                '/&#([0-9]+);/', 
-                function($matches) { return quicklatex_unichr($matches[1]); },                
-                $string
-        );
+		$string = preg_replace('~&#x([0-9a-f]+);~ei', 'quicklatex_unichr(hexdec("\\1"))', $string);
+		$string = preg_replace('~&#([0-9]+);~e', 'quicklatex_unichr("\\1")', $string);
 		
 		// replace other literal entities	
 		if (!isset($trans_tbl))
